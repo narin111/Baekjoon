@@ -11,7 +11,7 @@ int main(){
 	int num;
 	int sum=0;
 	cin >> num;
-	for(int i=5; i<num+1; i*=5){
+	for(int i=5; i<=num; i*=5){
 		sum+=(num/i);
 	}
 
