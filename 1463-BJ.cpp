@@ -2,7 +2,7 @@
 using namespace std;
 // 10:11
 
-
+int d[1000000];
 // d[n] : n을 1로 만드는 최소 연산 횟수 
 int go (int n){ //top down
 	// 1로 만들기에서 가장 작은 문제는 1을 1로 만들기
@@ -11,7 +11,7 @@ int go (int n){ //top down
 		return 0;
 	} 
 	// 0보다 크다면 이전에 연산한 적이 있다. 
-	if(d[n]>0){
+	if( d[n]>0 ){
 		return d[n]; //메모이제이션 
 	} 
 	d[n] = go(n-1)+1;
@@ -27,10 +27,24 @@ int go (int n){ //top down
 	}
 	return d[n];
 }
-
-
+ 
+int bottomup(int n){
+	for(int i=2; i<=n; i++){
+		d[i] = d[i-1] +1;
+		if(i%2 == 0 && d[i] > d[i/2] +1){
+			d[i] = d[i/2] +1;
+		}
+		if(i%3 ==0 && d[i] > d[i/3] + 1){
+			d[i] = d[i/3] +1 ;
+		}
+	}	
+}
 
 int main(){
+	int num;
+	
+	cin >> num;
+	cout << go(num);
 	
 	return 0;
 } 
